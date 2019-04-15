@@ -1,3 +1,5 @@
+package ASCIIArt;
+
 import java.util.*;
 import java.io.*;
 import java.math.*;
@@ -6,17 +8,21 @@ import java.math.*;
  * Auto-generated code below aims at helping you parse
  * the standard input according to the problem statement.
  **/
-class Solution {
+class NewSolution {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int L = in.nextInt();
-        int H = in.nextInt();
-        if (in.hasNextLine()) {
-            in.nextLine();
-        }
+        int L = 4;
+        int H = 5;
+
         String T = in.nextLine();
         String[] res = new String[H];
+
+        String[] ASCII = {" #  ##   ## ##  ### ###  ## # # ###  ## # # #   # # ###  #  ##   #  ##   ## ### # # # # # # # # # # ### ### ",
+        "# # # # #   # # #   #   #   # #  #    # # # #   ### # # # # # # # # # # #    #  # # # # # # # # # #   #   # ",
+        "### ##  #   # # ##  ##  # # ###  #    # ##  #   ### # # # # ##  # # ##   #   #  # # # # ###  #   #   #   ## ",
+        "# # # # #   # # #   #   # # # #  #  # # # # #   # # # # # # #    ## # #   #  #  # # # # ### # #  #  #       ",
+        "# # ##   ## ##  ### #    ## # # ###  #  # # ### # # # #  #  #     # # # ##   #  ###  #  # # # #  #  ###  #  "};
 
         for (int i = 0; i < res.length; i++) {
             res[i] = "";
@@ -24,12 +30,13 @@ class Solution {
 
         char[] t = T.toUpperCase().toCharArray();
         for (int i = 0; i < H; i++) {
-            String ROW = in.nextLine();
-            ROW = ROW.replace(' ', '.');
+            String ROW = ASCII[i];
+            ROW = ROW.replace(' ', '=');
+            ROW = ROW.replace('#', '#');
 
             for(int k = 0; k < H; k++) {
-                for (int j = 0; j < t.length; j++) {
-                    res[k] += showRow(ROW, t[j], L);
+                for (char c : t) {
+                    res[k] += showRow(ROW, c, L);
                 }
                 res[k] += "\n";
             }
@@ -52,7 +59,7 @@ class Solution {
         for (int i = 0; i < lineOfLetter.length; i++) {
             if (ch - 65 == i) return lineOfLetter[i];
         }
-        if (ch == ' ') return "  ";
+        if (ch == ' ') return "..";
         return lineOfLetter[26];
     }
 }
